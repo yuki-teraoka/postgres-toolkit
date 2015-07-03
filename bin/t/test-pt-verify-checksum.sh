@@ -63,7 +63,7 @@ function testVerifyChecksum002()
     if [ $_MAJORVERSION == "9.3" ]; then
 	contains 'Verified 2[0-9][0-9] files. 0 files corrupted.' $OUT
 	assertTrue $?
-    elif [ $_MAJORVERSION == "9.4" ]; then
+    elif [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains 'Verified 2[0-9][0-9] files. 0 files corrupted.' $OUT
 	assertTrue $?
     else
@@ -88,6 +88,9 @@ function testVerifyChecksum003()
 	assertTrue $?
     elif [ $_MAJORVERSION == "9.4" ]; then
 	contains 'Verified 9[0-9][0-9] files. 0 files corrupted.' $OUT
+	assertTrue $?
+    elif [ $_MAJORVERSION == "9.5" ]; then
+	contains 'Verified 1[0-9][0-9][0-9] files. 0 files corrupted.' $OUT
 	assertTrue $?
     else
 	fail

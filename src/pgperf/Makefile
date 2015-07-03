@@ -14,6 +14,7 @@ clean:
 	rm -f pgperf_snapshot_install92.sql
 	rm -f pgperf_snapshot_install93.sql
 	rm -f pgperf_snapshot_install94.sql
+	rm -f pgperf_snapshot_install95.sql
 	rm -f *~
 	make -C t clean
 
@@ -24,3 +25,4 @@ install:
 	install -m 644 pgperf_snapshot_install92.sql $(PREFIX)/share
 	install -m 644 pgperf_snapshot_install93.sql $(PREFIX)/share
 	install -m 644 pgperf_snapshot_install94.sql $(PREFIX)/share
+	install -m 644 pgperf_snapshot_install95.sql $(PREFIX)/share

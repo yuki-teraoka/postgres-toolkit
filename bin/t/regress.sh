@@ -27,6 +27,11 @@ function _setUp()
     echo "host    replication     $USER        127.0.0.1/32            trust" >> ${PGDATA}/pg_hba.conf
 
     pg_ctl -D ${PGDATA} -w start -o "-p ${PGPORT}"
+    if [ $? -ne 0 ]; then
+	echo "Cannot start the postmaster"
+	return 1
+    fi
+
     createdb testdb
 
     # add a replica/slave
@@ -55,6 +60,12 @@ function _setUp()
     _PORT=`expr $PGPORT + 1`
     echo pg_ctl -w -D ${PGDATA}_slave start -o -p${_PORT}
     pg_ctl -w -D ${PGDATA}_slave start -o "-p ${_PORT}"
+    if [ $? -ne 0 ]; then
+	echo "Cannot start the postmaster (slave)"
+	return 1
+    fi
+
+    return 0
 }
 
 
@@ -82,6 +93,10 @@ function testsuite()
     export _MAJORVERSION
 
     _setUp $PGHOME $PGDATA > setup.log 2>&1
+    if [ $? -ne 0 ]; then
+	cat setup.log
+	return 1
+    fi
 
     echo "=========================================="
     echo "PGHOME: $PGHOME"
@@ -186,4 +201,20 @@ elif [ -d /usr/lib/postgresql/9.4 ]; then
   testsuite /usr/lib/postgresql/9.4 ./data94 ./out94
 else
   echo "passing the regression tests for 9.4"
+fi
+
+# -------------------------------------------------------
+# 9.5
+# -------------------------------------------------------
+if [ -d /usr/pgsql-9.5 ]; then
+  # RHEL/CentOS
+  testsuite /usr/pgsql-9.5 ./data95 ./out95
+elif [ -d /usr/lib/postgresql/9.5 ]; then
+  # Ubuntu
+  testsuite /usr/lib/postgresql/9.5 ./data95 ./out95
+elif [ -d $HOME/usr ]; then
+  # Ubuntu
+  testsuite $HOME/usr ./data95 ./out95
+else
+  echo "passing the regression tests for 9.5"
 fi

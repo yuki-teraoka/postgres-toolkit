@@ -65,7 +65,7 @@ function testSnapStatement002()
     wait_and_exec 1 "select count(*) from pgbench_accounts" &
     pt-snap-statements -h 127.0.0.1 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
     else
@@ -76,7 +76,7 @@ function testSnapStatement002()
     wait_and_exec 1 "select count(*) from pgbench_accounts" &
     pt-snap-statements --host 127.0.0.1 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
     else
@@ -92,7 +92,7 @@ function testSnapStatement003()
     wait_and_exec 1 "select count(*) from pgbench_accounts" &
     pt-snap-statements -p $PGPORT 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
     else
@@ -103,7 +103,7 @@ function testSnapStatement003()
     wait_and_exec 1 "select count(*) from pgbench_accounts" &
     pt-snap-statements --port $PGPORT 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
     else
@@ -119,7 +119,7 @@ function testSnapStatement004()
     wait_and_exec 1 "select count(*) from pgbench_accounts" &
     pt-snap-statements -U $USER 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
     else
@@ -130,7 +130,7 @@ function testSnapStatement004()
     wait_and_exec 1 "select count(*) from pgbench_accounts" &
     pt-snap-statements --username $USER 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
     else
@@ -149,7 +149,7 @@ function testSnapStatement005()
     wait_and_exec 1 "select count(*) from pgbench_accounts" &
     pt-snap-statements -d testdb 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
     else
@@ -160,7 +160,7 @@ function testSnapStatement005()
     wait_and_exec 1 "select count(*) from pgbench_accounts" &
     pt-snap-statements --dbname testdb 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
     else
@@ -181,7 +181,7 @@ function testSnapStatement006()
     wait_and_exec 1 "select count(*) from pgbench_history" &
     pt-snap-statements -t 1 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_b |     1 ' $OUT
@@ -202,7 +202,7 @@ function testSnapStatement006()
     wait_and_exec 1 "select count(*) from pgbench_history" &
     pt-snap-statements -t 2 2 > $OUT 2>&1
 
-    if [ $_MAJORVERSION == "9.4" ]; then
+    if [ $_MAJORVERSION == "9.4" -o $_MAJORVERSION == "9.5" ]; then
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_a |     1 ' $OUT
 	assertTrue $?
 	contains ' | testdb | .\{7,8\} | select count(\*) from pgbench_b |     1 ' $OUT

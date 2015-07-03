@@ -4,7 +4,7 @@ SELECT pgperf._get_server_version() >= 90;
  t
 (1 row)
 
-SELECT pgperf._get_server_version() <= 94;
+SELECT pgperf._get_server_version() <= 95;
  ?column? 
 ----------
  t
@@ -16,7 +16,7 @@ SELECT pgperf._get_server_version() < 90;
  f
 (1 row)
 
-SELECT pgperf._get_server_version() > 94;
+SELECT pgperf._get_server_version() > 95;
  ?column? 
 ----------
  f
