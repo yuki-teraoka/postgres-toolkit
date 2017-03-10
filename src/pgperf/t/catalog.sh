@@ -79,5 +79,7 @@ get_catalog /usr/pgsql-9.1 ./data91 catalog91.txt
 get_catalog /usr/pgsql-9.2 ./data92 catalog92.txt
 get_catalog /usr/pgsql-9.3 ./data93 catalog93.txt
 get_catalog /usr/pgsql-9.4 ./data94 catalog94.txt
+get_catalog /usr/pgsql-9.5 ./data95 catalog96.txt
+get_catalog /usr/pgsql-9.6 ./data96 catalog95.txt
 
 exit 0
